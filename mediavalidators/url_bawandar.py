@@ -18,11 +18,15 @@ def bawandar(url):
 		header_dict={}
 		for x,y in header_list:
 			header_dict[x]=y
-		print("Content type: "+header_dict['content-type']) 		
+		print("Content type: "+header_dict['content-type'])
+		return {"data":header_dict,"flag":1} 		
 	else:
 		print("Failed to reach to the url")
+		return {"data":None,"flag":0}
 	
 
 if __name__ == '__main__':
 	url = sys.argv[1]
-	bawandar(url)
+	a=bawandar(url)
+	if a.flag==1:
+		print(a.data['content-type'])
