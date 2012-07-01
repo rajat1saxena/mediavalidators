@@ -4,6 +4,12 @@ import httplib
 import sys
 
 def bawandar(url):
+	# finding whether there is "http://" in the starting of url or not,if not then fix the url
+	try:
+		url.index("http://")
+	except:
+		url="http://"+url
+
 	response = urllib.urlopen(url)
 	if response.getcode() == 200:
 		#do all other things
@@ -23,10 +29,4 @@ def bawandar(url):
 	else:
 		print("Failed to reach to the url")
 		return {"data":None,"flag":0}
-	
 
-if __name__ == '__main__':
-	url = sys.argv[1]
-	a=bawandar(url)
-	if a.flag==1:
-		print(a.data['content-type'])
